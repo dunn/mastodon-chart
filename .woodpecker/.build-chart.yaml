@@ -8,8 +8,8 @@ steps:
     environment:
       - HELM_EXPERIMENTAL_OCI=1
     commands:
-      - export CHART_NAME=$(yq '.name' <chart/Chart.yaml)
-      - export CHART_VER=$(yq '.version' <chart/Chart.yaml)
+      - export CHART_NAME=$(yq '.name' <Chart.yaml)
+      - export CHART_VER=$(yq '.version' <Chart.yaml)
       - helm registry login registry-1.docker.io --username $CI_REGISTRY_USER --password $CI_REGISTRY_PASSWORD
       - helm dependency build .
       - helm package .
