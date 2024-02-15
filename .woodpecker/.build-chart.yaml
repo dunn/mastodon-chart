@@ -1,13 +1,6 @@
 when:
   - branch: trunk
     event: tag
-    path:
-      include: [
-        'Chart*',
-        '*.yaml',
-        'templates/*',
-        '.woodpecker/.build-chart.yaml'
-      ]
 
 steps:
   - name: build-chart
