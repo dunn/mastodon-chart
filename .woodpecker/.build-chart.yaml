@@ -1,0 +1,24 @@
+when:
+  - branch: trunk
+    event: tag
+    path:
+      include: [
+        'Chart*',
+        '*.yaml',
+        'templates/*',
+        '.woodpecker/.build-chart.yaml'
+      ]
+
+steps:
+  - name: build-chart
+    image: dtzar/helm-kubectl:${HELM_VER}
+    environment:
+      - HELM_EXPERIMENTAL_OCI=1
+    commands:
+      - export CHART_NAME=$(yq '.name' <chart/Chart.yaml)
+      - export CHART_VER=$(yq '.version' <chart/Chart.yaml)
+      - helm registry login registry-1.docker.io --username $CI_REGISTRY_USER --password $CI_REGISTRY_PASSWORD
+      - helm dependency build .
+      - helm package chart
+      - helm push $CHART_NAME-$CHART_VER.tgz oci://registry-1.docker.io/grumble/
+    secrets: [CI_REGISTRY_USER, CI_REGISTRY_PASSWORD]
