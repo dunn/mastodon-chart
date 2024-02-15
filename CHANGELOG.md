@@ -1,3 +1,24 @@
+# 5.0.0
+
+- redis chart [updated from 16.x to
+  18.x](https://github.com/bitnami/charts/tree/main/bitnami/redis#to-1800),
+  which upgrades the default version of redis used from 6 to 7
+  - [redis 7.0 changelog](https://raw.githubusercontent.com/redis/redis/7.0/00-RELEASENOTES)
+  - [redis 7.2 changelog](https://raw.githubusercontent.com/redis/redis/7.2/00-RELEASENOTES)
+
+- postgresql chart [updated from 11.x to
+  14.x](https://github.com/bitnami/charts/tree/main/bitnami/postgresql#to-1400)
+  - updates the default version of postgresql from 14 to 16
+    - [upgrade notes for 14 to
+      15](https://www.postgresql.org/docs/15/upgrading.html)
+    - [upgrade notes for 15 to
+      16](https://www.postgresql.org/docs/16/upgrading.html)
+  - changes how `NetworkPolicy` objects are created
+
+- improve redis secret handling (d7434ab, cc2f49b)
+
+- remove Bitnami 'common' references (2157328)
+
 # [4.0.0](https://github.com/mastodon/chart/compare/920cf37..ae892d5)
 
 - adds support for multiple Sidekiq deployments to be configured to manage
