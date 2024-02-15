@@ -12,6 +12,6 @@ steps:
       - export CHART_VER=$(yq '.version' <chart/Chart.yaml)
       - helm registry login registry-1.docker.io --username $CI_REGISTRY_USER --password $CI_REGISTRY_PASSWORD
       - helm dependency build .
-      - helm package chart
+      - helm package .
       - helm push $CHART_NAME-$CHART_VER.tgz oci://registry-1.docker.io/grumble/
     secrets: [CI_REGISTRY_USER, CI_REGISTRY_PASSWORD]
